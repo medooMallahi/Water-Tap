@@ -1,6 +1,6 @@
 const User = require("../models/User");
 
-const bycrpt = require("bcrypt");
+const bycrpt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
 exports.register = (req, res, next) => {
@@ -61,7 +61,7 @@ exports.logIn = (req, res, next) => {
               });
             })
             .catch((err) => {
-              return res.status(400).send(err);
+              return res.status(400).send({ err, message: "failed" });
             });
         })
         .catch((err) => {
