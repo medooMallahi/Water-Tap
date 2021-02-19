@@ -10,7 +10,9 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 // routes
 const RegistrationRoute = require("./routes/Registration");
+const HomePageRoute = require("./routes/HomePageRoute.js");
 
+app.use(HomePageRoute);
 app.use(RegistrationRoute);
 
 const mongoDbUrl =
