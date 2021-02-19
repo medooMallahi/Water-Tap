@@ -8,14 +8,15 @@ const bodyParser = require("body-parser");
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-app.get("/", (req, res, next) => {
-  res.send("Hello World");
-});
+// routes
+const RegistrationRoute = require("./routes/Registration");
+
+app.use(RegistrationRoute);
 
 const mongoDbUrl =
   "mongodb+srv://medoo:0592413118@rlck.ifnzw.mongodb.net/Rlck?retryWrites=true&w=majority";
 
-let PORT = process.env.PORT || 5400;
+let PORT = process.env.PORT || 4000;
 
 mongoose
   .connect(mongoDbUrl)
