@@ -1,4 +1,4 @@
-const User = require("../models/User");
+const User = require("../models/Driver");
 
 const bycrpt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
@@ -9,7 +9,17 @@ exports.register = (req, res, next) => {
     .then((hashed) => {
       req.body.password = hashed;
 
-      const user = new User(req.body);
+      const location = {
+        type: "Point",
+        coordinates: [req.body.long, req.body.lat],
+      };
+
+      const user = new User({
+        name: req.body.name,
+        email: req.body.email,
+        password: req.body.password,
+        location: location,
+      });
       user
         .save()
         .then((user) => {
