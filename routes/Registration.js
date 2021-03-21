@@ -5,8 +5,10 @@ const RegistrationRoutes = require("../controllers/RegistrationRoute");
 const RegistrationRoutesDriver = require("../controllers/RegisterationRoutesDriver");
 
 Router.post("/api/users/registerDriver", RegistrationRoutesDriver.register);
+Router.post("/api/users/logInDriver", RegistrationRoutesDriver.logIn);
 Router.post("/api/users/registerUser", RegistrationRoutes.register);
-Router.post("/api/users/logIn", RegistrationRoutes.logIn);
+Router.post("/api/users/logInUser", RegistrationRoutes.logIn);
+
 Router.get(
   "/api/users/logout",
   RegistrationRoutes.auth,
