@@ -1,7 +1,8 @@
 const express = require("express");
 const Router = express.Router();
 
-const USerFuncs = require("../controllers/usersFunc");
+const Funcs = require("../controllers/Func");
 
-Router.post("/api/users/findNearByDriver", USerFuncs.FindNearByDriver);
+Router.post("/api/users/findNearByDriver", Funcs.FindNearByDriver);
+Router.post("/api/users/updateDriverLocation", Funcs.updateDriverLocation);
 module.exports = Router;

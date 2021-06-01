@@ -13,6 +13,10 @@ const DriverSchema = new Schema({
     trim: true,
     unique: 1,
   },
+  phone: {
+    type: String,
+    trim: true,
+  },
   password: {
     type: String,
     required: true,
@@ -31,6 +35,13 @@ const DriverSchema = new Schema({
       type: [Number],
       required: true,
     },
+  },
+  rate: {
+    type: Number,
+  },
+  socketID: {
+    type: String,
+    default: "",
   },
 });
 

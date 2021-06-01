@@ -13,6 +13,10 @@ const UserSchema = new Schema({
     trim: true,
     unique: 1,
   },
+  phone: {
+    type: String,
+    trim: true,
+  },
   password: {
     type: String,
     required: true,
@@ -20,6 +24,10 @@ const UserSchema = new Schema({
   },
   token: {
     type: String,
+  },
+  socketID: {
+    type: String,
+    default: "",
   },
 });
 

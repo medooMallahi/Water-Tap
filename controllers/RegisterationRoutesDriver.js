@@ -17,13 +17,21 @@ exports.register = (req, res, next) => {
       const driver = new Driver({
         name: req.body.name,
         email: req.body.email,
+        phone: req.body.phone,
         password: req.body.password,
         location: location,
       });
+
       driver
         .save()
         .then((driver) => {
-          return res.status(200).json({ success: true, driver });
+          return res.status(200).json({
+            success: true,
+            driverID: driver._id.toHexString(),
+            name: driver.name,
+            email: driver.email,
+            location: driver.location,
+          });
         })
         .catch((err) => {
           console.log("Error with user saving");
