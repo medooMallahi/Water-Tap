@@ -1,11 +1,13 @@
-let connection = null;
 const Driver = require("./models/Driver");
 const User = require("./models/User");
+const mongoose = require("mongoose");
+
+let connection = null;
 
 class Realtime {
   constructor() {
-    this._socket = null;
-    this._io = null;
+    this.socket = null;
+    this.io = null;
   }
 
   static init(server) {
@@ -30,32 +32,86 @@ class Realtime {
         methods: ["GET", "POST"],
       },
     };
-    this._io = require("socket.io")(server, options);
+    this.io = require("socket.io")(server, options);
 
-    this._io.on("connection", (socket) => {
-      this._socket = socket;
-      console.log(this._socket.id, " just connected");
+    this.io.on("connection", (socket) => {
+      this.socket = socket;
+      console.log(this.socket.id, " just connected");
 
-      this._socket.on("join", (data) => {
-        this._socket.join(data.id);
-      }); // end of init
+      let userData;
 
-      this._socket.on("disconnect", () => {
-        console.log(this._socket.id, " just disconnected");
+      this.socket.on("join", (data) => {
+        this.socket.join(data.id);
+
+        userData = data;
+
+        const filter = { _id: mongoose.Types.ObjectId(data.id) };
+        const update = {
+          socketID: this.socket.id,
+        };
+
+        if (data.isDriver == "true") {
+          Driver.findOneAndUpdate(filter, update, {
+            new: true,
+          })
+            .then((driver) => {
+              console.log(driver);
+            })
+            .catch((err) => {
+              console.log(err);
+            });
+        } else {
+          User.findOneAndUpdate(filter, update, {
+            new: true,
+          })
+            .then((User) => {
+              console.log(User);
+            })
+            .catch((err) => {
+              console.log(err);
+            });
+        }
+      }); // end of join
+
+      this.socket.on("disconnect", () => {
+        console.log(this.socket.id, " just disconnected");
+
+        const filter = { _id: mongoose.Types.ObjectId(userData.id) };
+        const update = {
+          socketID: "",
+        };
+
+        if (userData.isDriver === "true") {
+          Driver.findOneAndUpdate(filter, update, {
+            new: true,
+          })
+            .then((driver) => {
+              console.log(driver);
+            })
+            .catch((err) => {
+              console.log(err);
+            });
+        } else {
+          User.findOneAndUpdate(filter, update, {
+            new: true,
+          })
+            .then((User) => {
+              console.log(User);
+            })
+            .catch((err) => {
+              console.log(err);
+            });
+        }
       }); // end of disconnect
     }); // end of io
   } // end of connect method
 
-  sendEvent(event, data) {
-    this._socket.emit(event, data);
-  } // end of sendEvent method
-
-  sendEventTo(event, data, to) {
-    this._io.sockets.in(to).emit(event, data);
+  returnIO() {
+    return this.io;
   }
-  registerEvent(event, handler) {
-    this._socket.on(event, handler);
-  } // end of registerEvent method
+  returnSocket() {
+    return this.socket;
+  }
 } // end of Realtime Class
 
 module.exports = {

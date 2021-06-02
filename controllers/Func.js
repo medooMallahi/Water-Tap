@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const Driver = require("../models/Driver");
+const User = require("../models/User");
 const realtime = require("../socketJs");
 
 exports.FindNearByDriver = (req, res, next) => {
@@ -61,11 +62,40 @@ exports.orderDriver = (req, res, next) => {
 
   const data = {
     clientName,
+    clientID,
     clientLocation,
   };
+
   const connection = realtime.connection();
 
-  connection.sendEventTo("newOrder", data, driverID);
+  const io = connection.returnIO();
+
+  let DriverSocket;
+  let ClientSocket;
+
+  Driver.findOne({ _id: mongoose.Types.ObjectId(driverID) })
+    .then((doc) => {
+      DriverSocket = io.sockets.sockets.get(doc.socketID);
+
+      // 1- driver recieve an order
+      io.sockets.in(driverID).emit("newOrder", data);
+
+      // 2- server recive the answer from the driver
+      DriverSocket.on("driverAnswer", (msg) => {
+        User.findOne({ _id: mongoose.Types.ObjectId(clientID) }).then((doc) => {
+          ClientSocket = io.sockets.sockets.get(doc.socketID);
+          // 3- analyze the answer and sent it back to client
+          if (msg.answer === "yes") {
+            ClientSocket.emit("driverDecision", "he's on his way to you");
+          } else {
+            ClientSocket.emit("driverDecision", "find someone else");
+          }
+        });
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+    });
 
   return res.status(200).json({ state: "true" });
 };

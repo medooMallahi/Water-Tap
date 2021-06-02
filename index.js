@@ -9,8 +9,8 @@ const server = require("http").createServer(app);
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 
-app.use(cors());
 app.use(express.json());
+app.use(cors());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 let mySocket;
@@ -52,7 +52,9 @@ connection.once("open", () => {
   let driverLocationsChangeStreams = connection.collection("drivers").watch();
   driverLocationsChangeStreams.on("change", (change) => {
     const connection = realtime.connection();
-    connection.sendEvent("locationChanged", change.fullDocument);
+
+    socket = connection.returnSocket();
+    socket.emit("locationChanged", change.fullDocument);
   });
 });
 
