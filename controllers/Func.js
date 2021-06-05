@@ -18,7 +18,7 @@ exports.FindNearByDriver = (req, res, next) => {
     if (!doc[0]) {
       return res.status(200).json({ success: true, driver: "not found" });
     }
-    return res.status(200).json({ success: true, driver: driver });
+    return res.status(200).json({ success: true, driver: doc });
   });
 }; // end of FindNearByDriver
 
