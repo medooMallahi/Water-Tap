@@ -18,17 +18,7 @@ exports.FindNearByDriver = (req, res, next) => {
     if (!doc[0]) {
       return res.status(200).json({ success: true, driver: "not found" });
     }
-    return res.status(200).json({
-      success: true,
-      driver: {
-        driverID: doc[0]._id.toHexString(),
-        name: doc[0].name,
-        location: [
-          doc[0].location.coordinates[0],
-          doc[0].location.coordinates[1],
-        ],
-      },
-    });
+    return res.status(200).json({ success: true, driver: driver });
   });
 }; // end of FindNearByDriver
 
@@ -93,6 +83,7 @@ exports.orderDriver = (req, res, next) => {
         });
       });
     })
+
     .catch((err) => {
       console.log(err);
     });

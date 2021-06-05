@@ -57,7 +57,7 @@ exports.logIn = (req, res, next) => {
               //set a token
               return res.status(200).json({
                 loginSuccess: true,
-                token,
+                user,
               });
             })
             .catch((err) => {

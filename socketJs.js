@@ -75,33 +75,6 @@ class Realtime {
 
       this.socket.on("disconnect", () => {
         console.log(this.socket.id, " just disconnected");
-
-        const filter = { _id: mongoose.Types.ObjectId(userData.id) };
-        const update = {
-          socketID: "",
-        };
-
-        if (userData.isDriver === "true") {
-          Driver.findOneAndUpdate(filter, update, {
-            new: true,
-          })
-            .then((driver) => {
-              console.log(driver);
-            })
-            .catch((err) => {
-              console.log(err);
-            });
-        } else {
-          User.findOneAndUpdate(filter, update, {
-            new: true,
-          })
-            .then((User) => {
-              console.log(User);
-            })
-            .catch((err) => {
-              console.log(err);
-            });
-        }
       }); // end of disconnect
     }); // end of io
   } // end of connect method
@@ -109,6 +82,7 @@ class Realtime {
   returnIO() {
     return this.io;
   }
+
   returnSocket() {
     return this.socket;
   }
