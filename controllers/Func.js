@@ -144,6 +144,8 @@ exports.orderDriver = (req, res, next) => {
     clientLocation,
   };
 
+  console.log(data);
+
   const connection = realtime.connection();
 
   const io = connection.returnIO();
