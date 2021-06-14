@@ -37,7 +37,8 @@ const DriverSchema = new Schema({
     },
   },
   rate: {
-    type: Number,
+    type: [Number],
+    default: [0, 0, 0, 0, 0],
   },
   socketID: {
     type: String,

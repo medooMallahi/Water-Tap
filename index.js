@@ -45,17 +45,3 @@ mongoose
   .catch(() => {
     console.log("Error with connecting to DB");
   });
-
-const connection = mongoose.connection;
-
-connection.once("open", () => {
-  let driverLocationsChangeStreams = connection.collection("drivers").watch();
-  driverLocationsChangeStreams.on("change", (change) => {
-    const connection = realtime.connection();
-
-    socket = connection.returnSocket();
-    socket.emit("locationChanged", change.fullDocument);
-  });
-});
-
-connection.on("error", (error) => console.log("Error: " + error));
