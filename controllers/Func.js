@@ -139,7 +139,6 @@ exports.orderDriver = (req, res, next) => {
   const clientLocation = req.body.clientLocation;
 
   const data = {
-    driverID,
     clientName,
     clientID,
     clientLocation,
@@ -163,6 +162,7 @@ exports.orderDriver = (req, res, next) => {
 
       // 2- server recive the answer from the driver
       DriverSocket.on("driverAnswer", (msg) => {
+        console.log(`driver accept${msg}`);
         User.findOne({ _id: mongoose.Types.ObjectId(clientID) }).then((doc) => {
           ClientSocket = io.sockets.sockets.get(doc.socketID);
           // 3- analyze the answer and sent it back to client
