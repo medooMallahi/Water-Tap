@@ -27,10 +27,11 @@ exports.register = (req, res, next) => {
         .then((driver) => {
           return res.status(200).json({
             success: true,
-            driverID: driver._id.toHexString(),
+            id: driver._id,
             name: driver.name,
             email: driver.email,
-            location: driver.location,
+            lat: driver.location.coordinates[0],
+            lon: driver.location.coordinates[1],
           });
         })
         .catch((err) => {

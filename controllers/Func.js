@@ -18,7 +18,17 @@ exports.FindNearByDriver = (req, res, next) => {
     if (!doc[0]) {
       return res.status(200).json({ success: true, driver: "not found" });
     }
-    return res.status(200).json({ success: true, driver: doc });
+    return res.status(200).json({
+      success: true,
+      driver: {
+        id: doc[0]._id,
+        name: doc[0].name,
+        email: doc[0].email,
+        phone: doc[0].phone,
+        lat: doc[0].location.coordinates[0],
+        lon: doc[0].location.coordinates[1],
+      },
+    });
   });
 }; // end of FindNearByDriver
 
