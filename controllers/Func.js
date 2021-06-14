@@ -162,16 +162,21 @@ exports.orderDriver = (req, res, next) => {
 
       // 2- server recive the answer from the driver
       DriverSocket.on("driverAnswer", (msg) => {
-        console.log(`driver accept${msg}`);
-        User.findOne({ _id: mongoose.Types.ObjectId(clientID) }).then((doc) => {
-          ClientSocket = io.sockets.sockets.get(doc.socketID);
-          // 3- analyze the answer and sent it back to client
-          if (msg.answer === "yes") {
-            ClientSocket.emit("driverDecision", true);
-          } else {
-            ClientSocket.emit("driverDecision", false);
-          }
-        });
+        console.log(`driver accept${msg.answer}`);
+
+        User.findOne({ _id: mongoose.Types.ObjectId(clientID) })
+          .then((doc) => {
+            ClientSocket = io.sockets.sockets.get(doc.socketID);
+
+            if (msg.answer === 1) {
+              ClientSocket.emit("driverDecision", true);
+            } else {
+              ClientSocket.emit("driverDecision", false);
+            }
+          })
+          .catch((err) => {
+            console.log(err);
+          });
       });
     })
 
