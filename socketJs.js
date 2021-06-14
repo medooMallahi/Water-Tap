@@ -50,7 +50,7 @@ class Realtime {
           socketID: this.socket.id,
         };
 
-        if (data.isDriver == "true") {
+        if (data.isDriver === "true") {
           Driver.findOneAndUpdate(filter, update, {
             new: true,
           })

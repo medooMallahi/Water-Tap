@@ -136,12 +136,14 @@ exports.orderDriver = (req, res, next) => {
   const driverID = req.body.driverID;
   const clientID = req.body.clientID;
   const clientName = req.body.clientName;
-  const clientLocation = req.body.clientLocation;
+  const clientLong = req.body.long;
+  const clientLat = req.body.lat;
 
   const data = {
     clientName,
     clientID,
-    clientLocation,
+    clientLong,
+    clientLat,
   };
 
   console.log(data);
@@ -170,6 +172,9 @@ exports.orderDriver = (req, res, next) => {
 
             if (msg.answer === 1) {
               ClientSocket.emit("driverDecision", true);
+              DriverSocket.on("orderFinish", () => {
+                console.log("order was finised");
+              });
             } else {
               ClientSocket.emit("driverDecision", false);
             }
