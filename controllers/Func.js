@@ -172,8 +172,10 @@ exports.orderDriver = (req, res, next) => {
 
             if (msg.answer === 1) {
               ClientSocket.emit("driverDecision", true);
+
               DriverSocket.on("orderFinish", () => {
                 console.log("order was finised");
+                //store this order
               });
             } else {
               ClientSocket.emit("driverDecision", false);
