@@ -171,7 +171,7 @@ exports.orderDriver = async (req, res, next) => {
 
       if (msg.answer === 1) {
         ClientSocket.emit("driverDecision", true);
-
+        console.log("1111");
         DriverSocket.on("orderFinish", async () => {
           console.log("order was finised");
 
