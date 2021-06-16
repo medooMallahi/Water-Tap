@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const OrderSchema = require("./Order");
 const Schema = mongoose.Schema;
 
 const UserSchema = new Schema({
@@ -29,6 +30,7 @@ const UserSchema = new Schema({
     type: String,
     default: "",
   },
+  orders: [OrderSchema],
 });
 
 module.exports = mongoose.model("User", UserSchema);
