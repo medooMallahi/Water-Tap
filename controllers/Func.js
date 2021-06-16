@@ -161,7 +161,7 @@ exports.orderDriver = async (req, res, next) => {
     DriverSocket = io.sockets.sockets.get(driver.socketID);
 
     DriverSocket.on("driverAnswer", async (msg) => {
-      console.log(`driver accept${msg.answer}`);
+      console.log(`driver accept${msg.answer}`); //1
 
       const user = await User.findOne({
         _id: mongoose.Types.ObjectId(clientID),
@@ -172,14 +172,19 @@ exports.orderDriver = async (req, res, next) => {
       if (msg.answer === 1) {
         ClientSocket.emit("driverDecision", true);
         console.log("1111");
+
         DriverSocket.on("orderFinish", async (msg) => {
-          console.log("order was finised", msg);
+          console.log("order was finised", msg.answer);
 
           user.orders.push({ driverName: driver.name, clientName });
           driver.orders.push({ driverName: driver.name, clientName });
 
-          await user.save();
-          await driver.save();
+          try {
+            await user.save();
+            await driver.save();
+          } catch (err) {
+            console.log("err in pushing", err);
+          }
           console.log("pushed orders");
         });
       } else {
