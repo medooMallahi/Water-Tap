@@ -110,8 +110,6 @@ exports.logIn = (req, res, next) => {
                 email: driver.email,
                 phone: driver.phone,
                 rate: rate,
-                lat: driver.location.coordinates[0],
-                lon: driver.location.coordinates[1],
               });
             })
             .catch((err) => {
