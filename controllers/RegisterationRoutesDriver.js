@@ -110,6 +110,7 @@ exports.logIn = (req, res, next) => {
                 email: driver.email,
                 phone: driver.phone,
                 rate: rate,
+                orders: driver.orders,
               });
             })
             .catch((err) => {
