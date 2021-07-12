@@ -2,6 +2,8 @@ const express = require("express");
 const app = express();
 
 const cors = require("cors");
+const path = require("path");
+
 const realtime = require("./socketJs");
 
 const server = require("http").createServer(app);
@@ -21,6 +23,14 @@ const UserRoutes = require("./routes/userRoutes");
 app.use(RegistrationRoute);
 app.use(DriverRoutes);
 app.use(UserRoutes);
+
+app.use(express.static("client/build"));
+
+if (process.env.NODE_ENV === "production") {
+  app.get("/*", (req, res) => {
+    res.sendFile(path.resolve(__dirname, "../client", "build", "index.html"));
+  });
+}
 
 const mongoDbUrl =
   "mongodb+srv://medoo:0592413118@rlck.ifnzw.mongodb.net/Rlck?retryWrites=true&w=majority";
