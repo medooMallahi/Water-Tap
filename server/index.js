@@ -15,11 +15,9 @@ let mySocket;
 
 // routes
 const RegistrationRoute = require("./routes/Registration");
-const HomePageRoute = require("./routes/HomePageRoute.js");
 const DriverRoutes = require("./routes/DriverRoutes");
 const UserRoutes = require("./routes/userRoutes");
 
-app.use(HomePageRoute);
 app.use(RegistrationRoute);
 app.use(DriverRoutes);
 app.use(UserRoutes);
