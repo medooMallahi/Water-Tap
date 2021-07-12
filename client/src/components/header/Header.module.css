@@ -1,0 +1,21 @@
+.header {
+  height: 4rem;
+  background-color: #ba265d;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  font-size: 3rem;
+  color: white;
+  margin-left: 0.5rem;
+}
+
+.signIn {
+  font-size: 2rem;
+  color: white;
+  margin-right: 1.5rem;
+  cursor: pointer;
+}
