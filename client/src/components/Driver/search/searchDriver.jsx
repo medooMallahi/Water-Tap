@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
@@ -12,23 +12,8 @@ import DeleteIcon from "@material-ui/icons/Delete";
 import { makeStyles } from "@material-ui/core/styles";
 
 import styles from "./DriversRecored.module.css";
-
-function createData(name, calories, fat, carbs, protein) {
-  return { name, calories, fat, carbs, protein };
-}
-
-const rows = [
-  createData("Frozen yoghurt", 159, 6.0, 24, 4.0),
-  createData("Ice cream sandwich", 237, 9.0, 37, 4.3),
-  createData("Eclair", 262, 16.0, 24, 6.0),
-  createData("Cupcake", 305, 3.7, 67, 4.3),
-  createData("Gingerbread", 356, 16.0, 49, 3.9),
-  createData("Frozen yoghurt", 159, 6.0, 24, 4.0),
-  createData("Ice cream sandwich", 237, 9.0, 37, 4.3),
-  createData("Eclair", 262, 16.0, 24, 6.0),
-  createData("Cupcake", 305, 3.7, 67, 4.3),
-  createData("Gingerbread", 356, 16.0, 49, 3.9),
-];
+import { useDispatch, useSelector } from "react-redux";
+import { getDrivers, deleteDriver } from "../../../store/drivers";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -60,6 +45,18 @@ const useStyles = makeStyles((theme) => ({
 
 const DriversRecored = () => {
   const classes = useStyles();
+  const dispatch = useDispatch();
+  const drivers = useSelector((state) => state.entities.drivers.list);
+
+  const deletedriver = (id) => {
+    dispatch(deleteDriver({ id }));
+    dispatch(getDrivers());
+  };
+
+  useEffect(() => {
+    dispatch(getDrivers());
+  }, [dispatch]);
+
   return (
     <div className={styles.container}>
       <TableContainer component={Paper} className={classes.root}>
@@ -72,21 +69,32 @@ const DriversRecored = () => {
               <TableCell className={classes.tableHeaderCell} align="justify">
                 Name
               </TableCell>
-              <TableCell align="justify"></TableCell>
+              <TableCell
+                className={classes.tableHeaderCell}
+                align="justify"
+              ></TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
-            {rows.map((row) => (
-              <TableRow key={row.name}>
-                <TableCell className={classes.cell}>{row.name}</TableCell>
-                <TableCell className={classes.cell}>{row.calories}</TableCell>
-                <TableCell className={classes.cell}>
-                  <IconButton aria-label="delete" className={classes.margin}>
-                    <DeleteIcon fontSize="large" />
-                  </IconButton>
-                </TableCell>
-              </TableRow>
-            ))}
+            {drivers ? (
+              drivers.map((row) => (
+                <TableRow key={row.name}>
+                  <TableCell className={classes.cell}>{row._id}</TableCell>
+                  <TableCell className={classes.cell}>{row.name}</TableCell>
+                  <TableCell className={classes.cell}>
+                    <IconButton
+                      aria-label="delete"
+                      className={classes.margin}
+                      onClick={() => deletedriver(row._id)}
+                    >
+                      <DeleteIcon fontSize="large" />
+                    </IconButton>
+                  </TableCell>
+                </TableRow>
+              ))
+            ) : (
+              <h1>There are no Drivers</h1>
+            )}
           </TableBody>
         </Table>
       </TableContainer>

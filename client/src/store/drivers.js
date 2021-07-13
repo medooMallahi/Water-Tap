@@ -12,7 +12,7 @@ const slice = createSlice({
 
   reducers: {
     driversRecieved: (state, action) => {
-      state.list.push(action.payload);
+      state.list = action.payload.data;
     },
   },
 });
@@ -25,6 +25,21 @@ export const registerDriver = (data) =>
     method: "post",
     data,
     msgOnSuccess: "Driver Added",
+  });
+
+export const deleteDriver = (data) =>
+  apiCallBegan({
+    url: "/users/deleteDriver",
+    method: "post",
+    data,
+    msgOnSuccess: "Driver Deleted successfuly",
+  });
+
+export const getDrivers = () =>
+  apiCallBegan({
+    url: "/users/getAllDrivers",
+    method: "get",
+    onSuccess: driversRecieved.type,
   });
 
 export default slice.reducer;

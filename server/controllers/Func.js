@@ -1,6 +1,5 @@
 const mongoose = require("mongoose");
 const Driver = require("../models/Driver");
-const OrderSchema = require("../models/Order");
 const User = require("../models/User");
 const realtime = require("../socketJs");
 
@@ -189,5 +188,26 @@ exports.orderDriver = async (req, res, next) => {
     });
   } catch (error) {
     console.log(error);
+  }
+};
+
+exports.deleteDriver = async (req, res, next) => {
+  const _id = req.body.id;
+
+  try {
+    const driver = await Driver.findByIdAndRemove(_id);
+    if (!driver) res.state(404).json({ message: "driver not found" });
+    res.status(200).json({ message: "deleted" });
+  } catch (error) {
+    console.log("Driver removing Error");
+  }
+};
+
+exports.getAllDrivers = async (req, res, next) => {
+  try {
+    const drivers = await Driver.find({});
+    res.status(200).json({ message: true, data: drivers });
+  } catch (error) {
+    console.log("Drives collecting  Error");
   }
 };

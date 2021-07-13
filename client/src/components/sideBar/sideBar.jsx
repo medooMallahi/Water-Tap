@@ -6,7 +6,7 @@ import styles from "./SideBar.module.css";
 const SideBar = () => {
   return (
     <div className={styles.sidebar}>
-      <div class={styles.sideNavItem}>
+      <div className={styles.sideNavItem}>
         <Link className={styles.sideNavLink} to="/">
           New Driver
         </Link>

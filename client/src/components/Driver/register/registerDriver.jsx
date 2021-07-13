@@ -22,9 +22,9 @@ const RegisterDriver = (props) => {
 
   const formik = useFormik({
     initialValues: {
-      email: "xxss@gmail.com",
-      name: "mohammed Almallahi",
-      password: "0592413118",
+      email: "almallahi@outlook.com",
+      name: "mohammed Al-mallahi",
+      password: "+972592413118",
     },
 
     onSubmit: (values) => {
@@ -41,7 +41,7 @@ const RegisterDriver = (props) => {
   return (
     <div className={styles.container}>
       <form className={styles.form} onSubmit={formik.handleSubmit}>
-        <div className={styles.Formtitle}>Sign UP NEW Driver</div>
+        <div className={styles.Formtitle}>Add New Driver</div>
         <div className={styles.formGroup}>
           <TextField
             className={styles.TextField}
@@ -74,7 +74,7 @@ const RegisterDriver = (props) => {
             className={classes.button}
             startIcon={<SaveIcon />}
           >
-            Save
+            Add
           </Button>
         </div>
       </form>
