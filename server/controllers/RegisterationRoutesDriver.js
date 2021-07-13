@@ -78,7 +78,7 @@ exports.logIn = (req, res, next) => {
   Driver.findOne({ email: req.body.email })
     .then((driver) => {
       if (!driver)
-        return res.json({
+        return res.status(404).json({
           loginSuccess: false,
           message: "Auth failed, email not found",
         });
