@@ -68,6 +68,8 @@ exports.FindNearByDriver = async (req, res, next) => {
 }; // end of FindNearByDriver
 
 exports.updateDriverLocation = async (req, res, next) => {
+  console.log(req.body);
+
   const filter = { _id: mongoose.Types.ObjectId(req.body.driverID) };
   const update = {
     "location.coordinates": req.body.location,
