@@ -59,25 +59,25 @@ const DriversRecored = () => {
 
   return (
     <div className={styles.container}>
-      <TableContainer component={Paper} className={classes.root}>
-        <Table className={classes.table}>
-          <TableHead>
-            <TableRow>
-              <TableCell className={classes.tableHeaderCell} align="justify">
-                DriverID
-              </TableCell>
-              <TableCell className={classes.tableHeaderCell} align="justify">
-                Name
-              </TableCell>
-              <TableCell
-                className={classes.tableHeaderCell}
-                align="justify"
-              ></TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {drivers ? (
-              drivers.map((row) => (
+      {drivers.length !== 0 ? (
+        <TableContainer component={Paper} className={classes.root}>
+          <Table className={classes.table}>
+            <TableHead>
+              <TableRow>
+                <TableCell className={classes.tableHeaderCell} align="justify">
+                  DriverID
+                </TableCell>
+                <TableCell className={classes.tableHeaderCell} align="justify">
+                  Name
+                </TableCell>
+                <TableCell
+                  className={classes.tableHeaderCell}
+                  align="justify"
+                ></TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {drivers.map((row) => (
                 <TableRow key={row.name}>
                   <TableCell className={classes.cell}>{row._id}</TableCell>
                   <TableCell className={classes.cell}>{row.name}</TableCell>
@@ -91,13 +91,13 @@ const DriversRecored = () => {
                     </IconButton>
                   </TableCell>
                 </TableRow>
-              ))
-            ) : (
-              <h1>There are no Drivers</h1>
-            )}
-          </TableBody>
-        </Table>
-      </TableContainer>
+              ))}
+            </TableBody>
+          </Table>
+        </TableContainer>
+      ) : (
+        <h1>There're no drivers</h1>
+      )}
     </div>
   );
 };
