@@ -83,7 +83,6 @@ const DriversRecored = () => {
                   <TableCell className={classes.cell}>{row.name}</TableCell>
                   <TableCell className={classes.cell}>
                     <IconButton
-                      aria-label="delete"
                       className={classes.margin}
                       onClick={() => deletedriver(row._id)}
                     >
