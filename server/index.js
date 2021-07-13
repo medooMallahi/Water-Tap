@@ -11,6 +11,7 @@ const server = require("http").createServer(app);
 const mongoose = require("mongoose");
 
 app.use(express.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
 
 // routes
