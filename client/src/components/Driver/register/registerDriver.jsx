@@ -24,7 +24,7 @@ const RegisterDriver = (props) => {
     initialValues: {
       email: "almallahi@outlook.com",
       name: "mohammed Al-mallahi",
-      password: "+972592413118",
+      password: "00000",
     },
 
     onSubmit: (values) => {

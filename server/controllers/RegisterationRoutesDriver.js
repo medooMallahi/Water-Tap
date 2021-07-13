@@ -72,6 +72,7 @@ exports.register = (req, res, next) => {
 };
 
 exports.logIn = (req, res, next) => {
+  console.log(req.body);
   Driver.findOne({ email: req.body.email })
     .then((driver) => {
       if (!driver)
