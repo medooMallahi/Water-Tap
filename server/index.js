@@ -13,8 +13,6 @@ const mongoose = require("mongoose");
 app.use(express.json());
 app.use(cors());
 
-let mySocket;
-
 // routes
 const RegistrationRoute = require("./routes/Registration");
 const DriverRoutes = require("./routes/DriverRoutes");

@@ -80,7 +80,7 @@ exports.updateDriverLocation = async (req, res, next) => {
     return res.json({ success: "true", driver });
   } catch (error) {
     console.log(error);
-    return res.json({ success: "false", err });
+    return res.json({ success: "false", error });
   }
 };
 
