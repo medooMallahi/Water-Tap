@@ -46,6 +46,7 @@ exports.register = (req, res, next) => {
         email: req.body.email,
         phone: req.body.phone,
         password: req.body.password,
+        location: location,
       });
 
       driver
