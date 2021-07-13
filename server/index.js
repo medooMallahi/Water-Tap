@@ -13,6 +13,7 @@ const mongoose = require("mongoose");
 
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 
 // routes
