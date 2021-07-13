@@ -7,6 +7,7 @@ const path = require("path");
 const realtime = require("./socketJs");
 
 const server = require("http").createServer(app);
+const bodyParser = require("body-parser");
 
 const mongoose = require("mongoose");
 
