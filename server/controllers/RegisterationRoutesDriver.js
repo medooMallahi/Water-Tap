@@ -38,7 +38,7 @@ exports.register = (req, res, next) => {
 
       const location = {
         type: "Point",
-        coordinates: [req.body.long, req.body.lat],
+        coordinates: [0, 0],
       };
 
       const driver = new Driver({
