@@ -154,6 +154,7 @@ exports.orderDriver = async (req, res, next) => {
       _id: mongoose.Types.ObjectId(driverID),
     });
 
+    // driver will recieve new order.
     io.sockets.in(driverID).emit("newOrder", clientData);
 
     DriverSocket = io.sockets.sockets.get(driver.socketID);
@@ -171,6 +172,8 @@ exports.orderDriver = async (req, res, next) => {
         ClientSocket.emit("driverDecision", true);
 
         DriverSocket.on("orderFinish", async (msg) => {
+          ClientSocket.emit("tripFinished", true); // let client know the trip finished
+
           user.orders.push({ driverName: driver.name, clientName });
           driver.orders.push({ driverName: driver.name, clientName });
 
