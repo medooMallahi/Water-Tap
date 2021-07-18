@@ -61,6 +61,7 @@ exports.updateDriverLocation = async (req, res, next) => {
 };
 
 exports.rateDriver = async (req, res, next) => {
+  console.log(req.body);
   const userRate = req.body.rate;
 
   try {
