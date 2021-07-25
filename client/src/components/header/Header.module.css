@@ -1,6 +1,6 @@
 .header {
   height: 4rem;
-  background-color: #ba265d;
+  background-color: #20232a;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -9,7 +9,7 @@
 
 .logo {
   font-size: 3rem;
-  color: white;
+  color: #61dafb;
   margin-left: 0.5rem;
 }
 
