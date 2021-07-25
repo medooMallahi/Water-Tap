@@ -72,6 +72,7 @@ exports.logIn = (req, res, next) => {
           );
 
           driver.token = token;
+
           driver
             .save()
             .then((driver) => {

@@ -1,27 +1,19 @@
-import React from "react";
-import { Switch, Route } from "react-router-dom";
-
-import MainLayout from "./ hoc/mainLayout";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import Navigation from "./components/Navigation/Navigation";
 import "./App.css";
+import { Switch, Route } from "react-router-dom";
+import Home from "./components/Home/Home";
 import RegisterDriver from "./components/Driver/register/registerDriver";
-import Header from "./components/header/header";
-import SideBar from "./components/sideBar/sideBar";
-import SearchDriver from "./components/Driver/search/searchDriver";
 
 function App() {
+  const user = useSelector((state) => state.entities.user);
+
   return (
-    <div className="container">
-      <Header />
-      <div className="content">
-        <SideBar />
-        <MainLayout>
-          <Switch>
-            <Route path="/searchDriver" component={SearchDriver} />
-            <Route path="/" component={RegisterDriver} />
-          </Switch>
-        </MainLayout>
-      </div>
-    </div>
+    <React.Fragment>
+      <Navigation isSignedIn={user.auth ? true : false} />
+      <Home />
+    </React.Fragment>
   );
 }
 

@@ -1,0 +1,18 @@
+.full_page {
+  height: 100vh;
+  background: linear-gradient(89deg, #ff5edf 0%, #04c8de 100%);
+  position: fixed;
+  top: 0%;
+  right: 0%;
+  bottom: 0%;
+  left: 0%;
+  z-index: 0;
+}
+.particls {
+  position: fixed;
+  top: 0%;
+  right: 0%;
+  bottom: 0%;
+  left: 0%;
+  z-index: -1;
+}

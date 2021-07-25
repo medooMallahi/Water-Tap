@@ -14,17 +14,14 @@ const slice = createSlice({
 
   reducers: {
     userCleared: (state, action) => initialState(),
+    userAuthenticated: (state, action) => {
+      state.data = action.payload;
+      state.auth = true;
+    },
   },
 });
 
-const {
-  userAuthenticated,
-  userCleared,
-  userAuthenticatedFailed,
-  userprofileeUpdated,
-  userAddedToCart,
-  purchaseSucceded,
-} = slice.actions;
+const { userAuthenticated, userCleared } = slice.actions;
 
 export const registerDriver = (data) =>
   apiCallBegan({
@@ -36,38 +33,10 @@ export const registerDriver = (data) =>
 
 export const loginUser = (data) =>
   apiCallBegan({
-    url: "/auth/signin",
+    url: "/users/logInDriver",
     method: "post",
     data,
     onSuccess: userAuthenticated.type,
   });
-
-// export const userIsAuth = () => (dispatch) => {
-//   try {
-//     if (!getTokenCookie()) {
-//       throw Error();
-//     }
-//   } catch (err) {
-//     userCleared();
-//   }
-
-//   dispatch(
-//     apiCallBegan({
-//       url: "/auth/isauth",
-//       headers: getAuthHeader(),
-//       onSuccess: userAuthenticated.type,
-//       onError: userAuthenticatedFailed.type,
-//     })
-//   );
-// };
-
-// export const updateUserProofile = (data) =>
-//   apiCallBegan({
-//     url: "/users/profile",
-//     method: "patch",
-//     data,
-//     headers: getAuthHeader(),
-//     onSuccess: userprofileeUpdated.type,
-//   });
 
 export default slice.reducer;

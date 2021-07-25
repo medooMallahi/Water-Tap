@@ -17,14 +17,14 @@ const useStyles = makeStyles((theme) => ({
 
 const RegisterDriver = (props) => {
   const dispatch = useDispatch();
-  const classes = useStyles();
   const notifications = useSelector((state) => state.entities.notifications);
 
   const formik = useFormik({
     initialValues: {
-      email: "almallahi@outlook.com",
+      email: "ex.@outlook.com",
       name: "mohammed Al-mallahi",
       password: "00000",
+      phone: "0592413118",
     },
 
     onSubmit: (values) => {
@@ -39,46 +39,58 @@ const RegisterDriver = (props) => {
   }, [notifications]);
 
   return (
-    <div className={styles.container}>
-      <form className={styles.form} onSubmit={formik.handleSubmit}>
-        <div className={styles.Formtitle}>Add New Driver</div>
-        <div className={styles.formGroup}>
-          <TextField
-            className={styles.TextField}
-            name="email"
-            label="Enter your email"
-            variant="outlined"
-            inputProps={{ style: { fontSize: 20 } }}
-            {...formik.getFieldProps("email")}
-          />
-          <TextField
-            className={styles.TextField}
-            name="name"
-            label="Enter your name"
-            variant="outlined"
-            inputProps={{ style: { fontSize: 20 } }}
-            {...formik.getFieldProps("name")}
-          />
-          <TextField
-            className={styles.TextField}
-            name="password"
-            label="Enter your Password"
-            variant="outlined"
-            inputProps={{ style: { fontSize: 20 } }}
-            {...formik.getFieldProps("password")}
-          />
-          <Button
-            variant="contained"
-            size="large"
-            type="submit"
-            className={classes.button}
-            startIcon={<SaveIcon />}
-          >
-            Add
-          </Button>
-        </div>
-      </form>
-    </div>
+    <article className="br ba b--black-10 mv4 w-100 w-50-m w-25-l mw6 shadow-5  center ">
+      <main className="pa4 black-80 justifiy">
+        <form className="measure" onSubmit={formik.handleSubmit}>
+          <fieldset id="sign_up" className="ba b--transparent ph0 mh0">
+            <legend className="f1 fw6 ph0 mh0">New Driver</legend>
+            <div className="mt3">
+              <TextField
+                style={{ width: "100%" }}
+                name="email"
+                label="Enter your email"
+                variant="outlined"
+                {...formik.getFieldProps("email")}
+              />
+            </div>
+            <div className="mv3">
+              <TextField
+                style={{ width: "100%" }}
+                name="phone"
+                label="Enter our phone"
+                variant="outlined"
+                {...formik.getFieldProps("phone")}
+              />
+            </div>
+            <div className="mv3">
+              <TextField
+                style={{ width: "100%" }}
+                name="name"
+                label="Enter our name"
+                variant="outlined"
+                {...formik.getFieldProps("name")}
+              />
+            </div>
+            <div className="mv3">
+              <TextField
+                style={{ width: "100%" }}
+                name="password"
+                label="Enter your password"
+                variant="outlined"
+                {...formik.getFieldProps("password")}
+              />
+            </div>
+          </fieldset>
+          <div>
+            <input
+              className="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib"
+              type="submit"
+              value="Save"
+            />
+          </div>
+        </form>
+      </main>
+    </article>
   );
 };
 

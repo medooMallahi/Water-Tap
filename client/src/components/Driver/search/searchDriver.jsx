@@ -11,15 +11,16 @@ import IconButton from "@material-ui/core/IconButton";
 import DeleteIcon from "@material-ui/icons/Delete";
 import { makeStyles } from "@material-ui/core/styles";
 
-import styles from "./DriversRecored.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { getDrivers, deleteDriver } from "../../../store/drivers";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    width: "80%",
+    width: "70%",
     height: 500,
     borderRadius: 16,
+    margin: "auto",
+    background: "transparent",
   },
   table: {
     fontSize: "20rem",
@@ -27,8 +28,7 @@ const useStyles = makeStyles((theme) => ({
   tableHeaderCell: {
     fontWeight: "bold",
     fontSize: "1.3rem",
-    backgroundColor: "grey",
-    color: theme.palette.getContrastText(theme.palette.primary.dark),
+    color: "black",
   },
   cell: {
     fontWeight: "bold",
@@ -58,7 +58,7 @@ const DriversRecored = () => {
   }, [dispatch]);
 
   return (
-    <div className={styles.container}>
+    <React.Fragment>
       {drivers.length !== 0 ? (
         <TableContainer component={Paper} className={classes.root}>
           <Table className={classes.table}>
@@ -97,7 +97,7 @@ const DriversRecored = () => {
       ) : (
         <h1>There're no drivers</h1>
       )}
-    </div>
+    </React.Fragment>
   );
 };
 
