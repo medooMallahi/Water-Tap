@@ -5,9 +5,11 @@ import "./App.css";
 import { Switch, Route } from "react-router-dom";
 import Home from "./components/Home/Home";
 import RegisterDriver from "./components/Driver/register/registerDriver";
+import { userIsAuth, userSignOut } from "./store/user";
 
 function App() {
   const user = useSelector((state) => state.entities.user);
+  const dispatch = useDispatch();
 
   return (
     <React.Fragment>

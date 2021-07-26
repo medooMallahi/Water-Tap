@@ -10,11 +10,11 @@ const Signin = (props) => {
   let history = useHistory();
 
   const formik = useFormik({
-    initialValues: { email: "ex.@gmail.com", password: "1111" },
+    initialValues: { email: "", password: "" },
 
     onSubmit: (values) => {
       handleSubmit(values);
-      history.push("/registerNewDriver");
+      history.push("/searchDriver");
     },
   });
 
