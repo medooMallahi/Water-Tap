@@ -7,6 +7,8 @@ import Navigation from "../Navigation/Navigation";
 import RegisterDriver from "../Driver/register/registerDriver.jsx";
 import { Switch, Route } from "react-router-dom";
 import DriversRecored from "../Driver/search/searchDriver.jsx";
+import EditDriver from "../Driver/edit/edit.jsx";
+
 const particlesOptions = {
   particles: {
     number: {
@@ -28,6 +30,7 @@ const Home = () => {
         <Logo />
       </div>
       <Switch>
+        <Route path="/EditDriver/:id" component={EditDriver} />
         <Route path="/searchDriver" component={DriversRecored} />
         <Route path="/registerNewDriver" component={RegisterDriver} />
         <Route path="/" exact component={Signin} />

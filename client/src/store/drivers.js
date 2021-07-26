@@ -19,6 +19,14 @@ const slice = createSlice({
 
 const { driversRecieved } = slice.actions;
 
+export const editDriver = (data) =>
+  apiCallBegan({
+    url: "/users/updateDriver",
+    method: "post",
+    data: data,
+    msgOnSuccess: "Driver Added",
+  });
+
 export const registerDriver = (data) =>
   apiCallBegan({
     url: "/users/registerDriver",

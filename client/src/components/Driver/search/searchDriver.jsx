@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-
+import { Link } from "react-router-dom";
 import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
 import TableCell from "@material-ui/core/TableCell";
@@ -73,6 +73,7 @@ const DriversRecored = () => {
                 <TableCell className={classes.tableHeaderCell} align="justify">
                   Phone
                 </TableCell>
+
                 <TableCell
                   className={classes.tableHeaderCell}
                   align="justify"
@@ -85,6 +86,14 @@ const DriversRecored = () => {
                   <TableCell className={classes.cell}>{row._id}</TableCell>
                   <TableCell className={classes.cell}>{row.name}</TableCell>
                   <TableCell className={classes.cell}>{row.phone}</TableCell>
+                  <TableCell className={classes.cell}>
+                    <Link
+                      className="f3 link dim black  pa3 pointer"
+                      to={"EditDriver/" + row._id}
+                    >
+                      Edit
+                    </Link>
+                  </TableCell>
                   <TableCell className={classes.cell}>
                     <IconButton
                       className={classes.margin}

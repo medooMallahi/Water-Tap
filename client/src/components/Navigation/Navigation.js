@@ -7,7 +7,8 @@ const Navigation = ({ isSignedIn }) => {
 
   if (
     location.pathname === "/searchDriver" ||
-    location.pathname === "/registerNewDriver"
+    location.pathname === "/registerNewDriver" ||
+    location.pathname === "/EditDriver"
   ) {
     return (
       <nav style={{ display: "flex", justifyContent: "flex-end" }}>

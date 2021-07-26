@@ -191,3 +191,18 @@ exports.getAllDrivers = async (req, res, next) => {
     console.log("Drives collecting  Error");
   }
 };
+exports.updateDriverInfo = async (req, res, next) => {
+  const body = { phone: req.body.values.phone };
+  const _id = req.body.id;
+  console.log(req.body);
+  try {
+    const driver = await Driver.findOneAndUpdate(
+      { _id },
+      { $set: body },
+      { new: true }
+    );
+    res.status(200).json({ success: true });
+  } catch (error) {
+    res.status(404).json({ success: false });
+  }
+};
