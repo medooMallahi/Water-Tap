@@ -55,6 +55,7 @@ const RegisterDriver = (props) => {
             </div>
             <div className="mv3">
               <TextField
+                className="b pa2 input-reset ba bg-transparent hover-bg-white hover-white w-100"
                 style={{ width: "100%" }}
                 name="phone"
                 label="Enter our phone"
@@ -64,6 +65,7 @@ const RegisterDriver = (props) => {
             </div>
             <div className="mv3">
               <TextField
+                className="b pa2 input-reset ba bg-transparent hover-bg-white hover-white w-100"
                 style={{ width: "100%" }}
                 name="name"
                 label="Enter our name"
@@ -73,6 +75,7 @@ const RegisterDriver = (props) => {
             </div>
             <div className="mv3">
               <TextField
+                className="b pa2 input-reset ba bg-transparent hover-bg-white hover-white w-100"
                 style={{ width: "100%" }}
                 name="password"
                 label="Enter your password"
