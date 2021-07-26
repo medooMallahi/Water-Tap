@@ -5,6 +5,15 @@ import { useFormik } from "formik";
 import { TextField, Button } from "@material-ui/core";
 import { loginUser } from "../../store/user";
 
+const styles = {
+  root: {
+    background: "black",
+  },
+  input: {
+    color: "white",
+  },
+};
+
 const Signin = (props) => {
   const dispatch = useDispatch();
   let history = useHistory();
@@ -30,7 +39,8 @@ const Signin = (props) => {
             <legend className="f1 fw6 ph0 mh0">Sign In</legend>
             <div className="mt3">
               <TextField
-                style={{ width: "100%" }}
+                className="b pa2 input-reset ba bg-transparent hover-bg-white hover-white w-100"
+                style={{ width: "100%", color: "red" }}
                 name="email"
                 label="Enter your email"
                 variant="outlined"
@@ -39,6 +49,7 @@ const Signin = (props) => {
             </div>
             <div className="mv3">
               <TextField
+                className="b pa2 input-reset ba bg-transparent hover-bg-white hover-white w-100"
                 style={{ width: "100%" }}
                 name="password"
                 label="Enter your password"
