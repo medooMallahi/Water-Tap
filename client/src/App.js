@@ -9,7 +9,6 @@ import { userIsAuth, userSignOut } from "./store/user";
 
 function App() {
   const user = useSelector((state) => state.entities.user);
-  const dispatch = useDispatch();
 
   return (
     <React.Fragment>

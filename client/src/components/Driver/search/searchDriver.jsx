@@ -70,6 +70,9 @@ const DriversRecored = () => {
                 <TableCell className={classes.tableHeaderCell} align="justify">
                   Name
                 </TableCell>
+                <TableCell className={classes.tableHeaderCell} align="justify">
+                  Phone
+                </TableCell>
                 <TableCell
                   className={classes.tableHeaderCell}
                   align="justify"
@@ -81,6 +84,7 @@ const DriversRecored = () => {
                 <TableRow key={row.name}>
                   <TableCell className={classes.cell}>{row._id}</TableCell>
                   <TableCell className={classes.cell}>{row.name}</TableCell>
+                  <TableCell className={classes.cell}>{row.phone}</TableCell>
                   <TableCell className={classes.cell}>
                     <IconButton
                       className={classes.margin}
