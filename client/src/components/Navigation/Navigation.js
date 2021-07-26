@@ -12,7 +12,7 @@ const Navigation = ({ isSignedIn }) => {
     return (
       <nav style={{ display: "flex", justifyContent: "flex-end" }}>
         <Link className="f3 link dim black  pa3 pointer" to="/searchDriver">
-          Search Drivers
+          Show Drivers
         </Link>
 
         <Link
